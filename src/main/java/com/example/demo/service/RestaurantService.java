@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import java.time.LocalDate;
-
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,13 +23,14 @@ public class RestaurantService {
 	@Autowired
 	private RestaurantRepository restaurantRepository;
 	String status="active";
-	
+	LocalTime time=LocalTime.now();
+	String updatedTime=time.toString();
 	//Service To add restaurant object
 	public ResponseEntity<RestaurantModel> createRestaurant(@RequestBody RestaurantModel rm){
 		try {
 			
 			RestaurantModel _restaurant=restaurantRepository.save(new RestaurantModel(rm.getRestaurantName(),rm.getAddress(),rm.getPhone_no(),
-					rm.getOpen_time(),rm.getClose_time(),status,rm.getUpdated_date()));
+					rm.getOpen_time(),rm.getClose_time(),status,updatedTime));
 			return new ResponseEntity<>(_restaurant,HttpStatus.CREATED);
 		}
 		catch(Exception e) {
@@ -98,9 +99,9 @@ public class RestaurantService {
 			rs.setPhone_no(resmodel.getPhone_no());
 			rs.setOpen_time(resmodel.getOpen_time());
 			rs.setClose_time(resmodel.getClose_time());
-			//rs.setImg_path(resmodel.getImg_path());
 			rs.setStatus(resmodel.getStatus());
-			rs.setUpdated_date(resmodel.getUpdated_date());
+			//rs.setUpdated_date(resmodel.getUpdated_date());
+			rs.setUpdatedTime(updatedTime);
 			return new ResponseEntity<RestaurantModel>(restaurantRepository.save(rs),HttpStatus.OK);
 		}
 		else {

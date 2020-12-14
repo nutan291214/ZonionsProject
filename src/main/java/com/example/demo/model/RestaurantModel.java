@@ -29,12 +29,12 @@ public class RestaurantModel {
 	private String open_time;
 	@Column(name="close_time")
 	private String close_time;
-//	@Column(name="img_path",columnDefinition = "LONGTEXT")
-//	private String img_path;
     @Column(name="status")
 	private String status;
-	@Column(name="updated_date")
-	private String updated_date;
+//	@Column(name="updated_date")
+//	private String updated_date;
+	@Column(name="lastUpdatedTime")
+	private String updatedTime;
 	//for image upload
 	@Column(name = "name")
     @JsonView(View.FileInfo.class)
@@ -53,7 +53,7 @@ public class RestaurantModel {
 	}
 
 	public RestaurantModel(int id, String restaurantName, String address, String phone_no, String open_time,
-			String close_time, String status, String updated_date, String name, String mimetype, byte[] pic) {
+			String close_time, String status, String name, String mimetype, byte[] pic) {
 		super();
 		this.id = id;
 		this.restaurantName = restaurantName;
@@ -62,20 +62,19 @@ public class RestaurantModel {
 		this.open_time = open_time;
 		this.close_time = close_time;
 		this.status = status;
-		this.updated_date = updated_date;
 		this.name = name;
 		this.mimetype = mimetype;
 		this.pic = pic;
 	}
 	public RestaurantModel(String restaurantName2, String address2, String phone_no2, String open_time2,
-			String close_time2, String status2, String updated_date2) {
+			String close_time2, String status2,String updatedTime) {
 		this.restaurantName=restaurantName2;
 		this.address=address2;
 		this.phone_no=phone_no2;
 		this.open_time=open_time2;
 		this.close_time=close_time2;
 		this.status=status2;
-		this.updated_date=updated_date2;		
+		this.updatedTime=updatedTime;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -161,15 +160,6 @@ public class RestaurantModel {
 	}
 
 
-	public String getUpdated_date() {
-		return updated_date;
-	}
-
-
-	public void setUpdated_date(String updated_date) {
-		this.updated_date = updated_date;
-	}
-
 
 	public String getName() {
 		return name;
@@ -199,21 +189,21 @@ public class RestaurantModel {
 	public void setPic(byte[] pic) {
 		this.pic = pic;
 	}
+    
 
+	public String getUpdatedTime() {
+		return updatedTime;
+	}
+
+	public void setUpdatedTime(String updatedTime) {
+		this.updatedTime = updatedTime;
+	}
 
 	@Override
 	public String toString() {
 		return "RestaurantModel [id=" + id + ", restaurantName=" + restaurantName + ", address=" + address
 				+ ", phone_no=" + phone_no + ", open_time=" + open_time + ", close_time=" + close_time + ", status="
-				+ status + ", updated_date=" + updated_date + ", name=" + name + ", mimetype=" + mimetype + ", pic="
-				+ Arrays.toString(pic) + "]";
+				+ status + ", updatedTime=" + updatedTime + ", name=" + name
+				+ ", mimetype=" + mimetype + ", pic=" + Arrays.toString(pic) + "]";
 	}
-
-	
-
-	
-	
-	
-	
-	
 }
